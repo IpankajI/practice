@@ -7,7 +7,8 @@ jobs:
     name: pratices
     runs-on: ubuntu-latest
     steps:
-    -   name: 1
-        run: echo ${{format('Hello {0} {1} {2}!', 'Mona', 'the', 'Octocat') }}
     -   name: 2
         run: echo '${{ toJSON(env) }}'
+        env:
+            name: pankaj
+            age: 40
