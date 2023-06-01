@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -   name: 2
-        run: echo 'setting env' >> $GITHUB_OUTPUT
+        run: echo "build_id=pankaj" >> $GITHUB_OUTPUT
         env:
             name: pankaj
             age: 40
