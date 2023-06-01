@@ -13,3 +13,5 @@ jobs:
         run: echo ${{github.env}}
     -   name: github.actor
         run: echo ${{github.actor}}
+    -   name: github.actor equal
+        run: echo ${{IpankajI==${{github.actor}}}}
