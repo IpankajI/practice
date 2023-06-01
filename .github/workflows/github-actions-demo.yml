@@ -5,8 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-    -   run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    -   run: echo $VAR1 && echo $VAR2
         env:
             VAR1: ${{1==2}}
             VAR2: ${{1==2}}
-    -   run: echo $VAR1 && echo VAR2
