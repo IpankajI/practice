@@ -1,18 +1,12 @@
-name: Test matrix
-on: push
+name: Share data between jobs
+
+on: [push]
 
 jobs:
-  test:
+  job_1:
+    name: pratices
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test-group: [1, 2]
-        node: [14, 16]
     steps:
-      - uses: actions/checkout@v3
-      - run: npm test > test-job-${{ strategy.job-index }}.txt
-      - name: Upload logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: Build log for job ${{ strategy.job-index }}
-          path: test-job-${{ strategy.job-index }}.txt
+    -   name: 3
+        run: echo $GITHUB_OUTPUT
+
