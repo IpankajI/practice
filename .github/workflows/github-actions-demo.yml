@@ -7,11 +7,5 @@ jobs:
     name: Add 3 and 7
     runs-on: ubuntu-latest
     steps:
-    -   name: test
-        run: echo $(expr 3 + 7)
-    -   name: github.env
-        run: echo ${{github.env}}
-    -   name: github.actor
-        run: echo ${{github.actor}}
     -   name: github.actor equal
-        run: echo ${{IpankajI==${{github.actor}}}}
+        run: echo ${{contains('pankaj', 'pan')}}
