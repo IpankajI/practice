@@ -9,4 +9,4 @@ jobs:
         env:
             VAR1: ${{1==2}}
             VAR2: ${{1==2}}
-    -   run: echo $VAR1 && VAR2
+    -   run: echo $VAR1 && echo VAR2
