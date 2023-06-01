@@ -4,8 +4,10 @@ on: [push]
 
 jobs:
   job_1:
-    name: Add 3 and 7
+    name: pratices
     runs-on: ubuntu-latest
     steps:
     -   name: github.actor equal
         run: echo ${{contains('IpankajI', github.actor)}}
+    -   name: pankaj==pankaj
+        run: echo ${{pankaj==pankaj}}
