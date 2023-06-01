@@ -10,4 +10,4 @@ jobs:
     -   name: 1
         run: echo ${{format('Hello {0} {1} {2}!', 'Mona', 'the', 'Octocat') }}
     -   name: 2
-        run: echo ${{format('{{Hello {0} {1} {2}!}}', 'Mona', 'the', 'Octocat') }}
+        run: echo ${{ join(github.event.issue.labels.*.name, ', ') }}
