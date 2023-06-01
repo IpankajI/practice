@@ -13,7 +13,7 @@ jobs:
             name: pankaj
             age: 40
     -   name: 3
-        run: echo '${{ toJSON(env) }}'
+        run: echo '${{ toJSON(env) }}' && echo $name
         env:
             name: pankaj
             age: 40
