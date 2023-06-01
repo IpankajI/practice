@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -   name: 2
+        run: echo 'setting env'
+        env:
+            name: pankaj
+            age: 40
+    -   name: 3
         run: echo '${{ toJSON(env) }}'
         env:
             name: pankaj
