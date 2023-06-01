@@ -7,7 +7,7 @@ jobs:
     steps:
     -   run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
         env:
-            VAR1: ${{1=2}}
-            VAR2: ${{1=2}}
+            VAR1: ${{1==2}}
+            VAR2: ${{1==1}}
             VAR3: value-for-3
     -   run: echo $VAR3
