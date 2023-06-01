@@ -7,7 +7,7 @@ jobs:
     name: pratices
     runs-on: ubuntu-latest
     steps:
-    -   name: github.actor equal
-        run: echo ${{contains('IpankajI', github.actor)}}
-    -   name: pankaj==pankaj
-        run: echo ${{'pankaj'=='pankasj'}}
+    -   name: 1
+        run: echo ${{format('Hello {0} {1} {2}!', 'Mona', 'the', 'Octocat') }}
+    -   name: 2
+        run: echo ${{format('{{Hello {0} {1} {2}!}}', 'Mona', 'the', 'Octocat') }}
