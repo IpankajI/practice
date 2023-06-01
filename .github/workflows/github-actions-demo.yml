@@ -10,4 +10,4 @@ jobs:
     -   name: github.actor equal
         run: echo ${{contains('IpankajI', github.actor)}}
     -   name: pankaj==pankaj
-        run: echo ${{'pankaj'=='pankaj'}}
+        run: echo ${{'pankaj'=='pankasj'}}
