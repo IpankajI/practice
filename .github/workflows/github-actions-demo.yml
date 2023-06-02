@@ -56,8 +56,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: git-action
           labels: ${{ steps.meta.outputs.labels }}
       -
         name: debug
-        run: echo ${{ github.event_name != 'pull_request' }}
+        run: echo ${{ github.event_name != 'pull_request' }},${{ steps.meta.outputs.tags }},${{ steps.meta.outputs.labels }}
