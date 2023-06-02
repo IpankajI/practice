@@ -14,6 +14,7 @@ on:
 
 env:
     SERVICE_ACCOUNT: 'github-action@blinddine.iam.gserviceaccount.com'
+    WIP: 'projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider'
 
 jobs:
   docker:
@@ -30,8 +31,8 @@ jobs:
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
-            workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-            service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+            workload_identity_provider: ${{env.WIP}}
+            service_account: ${{env.SERVICE_ACCOUNT}}
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
