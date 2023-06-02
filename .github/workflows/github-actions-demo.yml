@@ -8,12 +8,6 @@ jobs:
         
         runs-on: ubuntu-latest
         environment: dev
-        outputs:
-            output1: ${{ steps.step1.outputs.test }}
-            output2: ${{ steps.step2.outputs.test }}
-        strategy:
-            matrix:
-                version: [10, 12, 14]
-                os: [ubuntu-latest, windows-latest]
         steps:
-            - run: echo ${{env.name}} && echo ${{env.NAME}}
+            - run: echo ${{vars.name}} && echo ${{vars.NAME}}
+            - run: echo ${{environment}}
