@@ -31,6 +31,11 @@ jobs:
         run: gcloud auth configure-docker --quiet
       - run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          service_account: '455334694532-compute@developer.gserviceaccount.com'
+          workload_identity_provider: projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider
       -
         name: Docker meta
         id: meta
