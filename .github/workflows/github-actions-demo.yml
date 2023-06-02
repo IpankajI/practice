@@ -5,8 +5,11 @@ on: [push]
 
 jobs:
     job1:
-        
         runs-on: ubuntu-latest
         environment: dev
         steps:
-            - run: echo ${{vars.name}} && echo ${{vars.NAME}}
+            -   name: env check
+                env:
+                    name: pankaj
+                    age: expr 1 + 3
+                run: echo $name && $age
