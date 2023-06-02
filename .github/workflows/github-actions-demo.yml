@@ -27,8 +27,8 @@ jobs:
       - name: set up google gcloud
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          service_account_key: 'github-action@blinddine.iam.gserviceaccount.com'
-          export_default_credentials: true
+            service_account_key: 'github-action@blinddine.iam.gserviceaccount.com'
+            export_default_credentials: true
       - run: gcloud auth list
         name: gclud auth list
       - name: Configure docker to use the gcloud cli
@@ -39,8 +39,8 @@ jobs:
         uses: google-github-actions/auth@v1
         id: 'auth'
         with:
-          service_account: 'github-action@blinddine.iam.gserviceaccount.com'
-          workload_identity_provider: projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider
+            ervice_account: 'github-action@blinddine.iam.gserviceaccount.com'
+            workload_identity_provider: projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider
       -
         name: Docker meta
         id: meta
