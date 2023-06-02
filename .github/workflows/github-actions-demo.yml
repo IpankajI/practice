@@ -5,7 +5,9 @@ on: [push]
 
 jobs:
     job1:
+        
         runs-on: ubuntu-latest
+        environment: dev
         outputs:
             output1: ${{ steps.step1.outputs.test }}
             output2: ${{ steps.step2.outputs.test }}
@@ -14,5 +16,4 @@ jobs:
                 version: [10, 12, 14]
                 os: [ubuntu-latest, windows-latest]
         steps:
-            - uses: actions/checkout@v3
-            - run: echo ${{matrix.version}} && echo ${{matrix.os}} && make run.test
+            - run: echo ${{env.name}} && echo ${{env.NAME}}
