@@ -8,7 +8,9 @@ jobs:
         runs-on: ubuntu-latest
         environment: dev
         steps:
-            -   uses: actions/checkout@v3
+            -   uses: actions/checkout@v2
+                with:
+                    fetch-depth: '0'
             -   name: env check
                 env:
                     name: pankaj
