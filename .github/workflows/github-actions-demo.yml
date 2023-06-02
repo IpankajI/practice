@@ -8,8 +8,11 @@ jobs:
         runs-on: ubuntu-latest
         environment: dev
         steps:
+            -   uses: actions/checkout@v2
+                with:
+                    fetch-depth: '0'
             -   name: env check
                 env:
                     name: pankaj
-                    age: ${{github.sha}}
-                run: echo $name && $age
+                    age: $(git rev-parse --short HEAD)
+                run: echo $name && echo $age
