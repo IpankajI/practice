@@ -8,20 +8,21 @@ jobs:
       runs-on: ubuntu-latest
     
       outputs:
-        matrix: ${{ steps.set-matrix.outputs.matrix }}
+        output1: ${{ steps.step1.outputs.test }}
+        output2: ${{ steps.step2.outputs.test }}
     
       steps:
-        - id: set-matrix
-          run: echo '::set-output name=matrix::{"include":[{"project":"foo","config":"Debug"},{"project":"bar","config":"Release"}]}'
-
+        - id: step1
+          run: echo "::set-output name=test::hello"
+    
+        - id: step2
+          run: echo "::set-output name=test::world"
+    
+        - name: Display
+          run: echo "${{ steps.step1.outputs.test }}"
+    
     job2:
-      needs: job1
-    
       runs-on: ubuntu-latest
-    
-      strategy:
-        matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
-    
+      needs: job1
       steps:
-        - run: build
-
+        - run: echo ${{ needs.job1.outputs.output1 }} ${{ needs.job1.outputs.output2 }}
