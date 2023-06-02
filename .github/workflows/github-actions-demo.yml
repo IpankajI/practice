@@ -56,7 +56,7 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             kmrpnk/practice
-            us-central1-docker.pkg.dev/blinddine/practice
+            us-central1-docker.pkg.dev/blinddine/practice/testing
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
