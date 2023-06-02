@@ -14,4 +14,4 @@ jobs:
                 version: [10, 12, 14]
                 os: [ubuntu-latest, windows-latest]
         steps:
-            - run: echo matrix.version && echo matrix.os
+            - run: echo ${{matrix.version}} && echo ${{matrix.os}}
