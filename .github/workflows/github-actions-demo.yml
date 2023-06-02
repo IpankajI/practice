@@ -14,5 +14,5 @@ jobs:
             -   name: env check
                 env:
                     name: pankaj
-                    age: $$(git rev-parse --short HEAD)
+                    age: ${{git rev-parse --short HEAD}}
                 run: echo $name && echo $age
