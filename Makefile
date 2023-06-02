@@ -1,2 +1,2 @@
-run:
-	echo hello make1
+run.test:
+	echo hello make
