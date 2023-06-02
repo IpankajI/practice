@@ -1,2 +1,2 @@
 run:
-	echo hello make
+	echo hello make1
