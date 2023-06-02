@@ -26,7 +26,7 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-          service_account_key: github-action@blinddine.iam.gserviceaccount.com
+          service_account_key: 'github-action@blinddine.iam.gserviceaccount.com'
           export_default_credentials: true
       - run: gcloud auth list
         name: gclud auth list
