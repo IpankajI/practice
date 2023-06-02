@@ -3,15 +3,24 @@ name: Share data between jobs
 on: [push]
 
 jobs:
-  job_1:
-    name: pratices
-    runs-on: ubuntu-latest
-    steps:
-    -   name: 2
-        run: echo "build_id=pankaj" >> $GITHUB_OUTPUT
-        env:
-            name: pankaj
-            age: 40
-    -   name: 3
-        run: echo $GITHUB_OUTPUT
+  jobs:
+    job1:
+      runs-on: ubuntu-latest
 
+      outputs:
+        matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+      steps:
+        - id: set-matrix
+          run: echo '::set-output name=matrix::{"include":[{"project":"foo","config":"Debug"},{"project":"bar","config":"Release"}]}'
+
+    job2:
+      needs: job1
+
+      runs-on: ubuntu-latest
+
+      strategy:
+        matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
+
+      steps:
+        - run: build
