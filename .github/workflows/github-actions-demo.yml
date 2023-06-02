@@ -20,6 +20,17 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_DOCKER_SA_KEY }}
+          export_default_credentials: true
+      - run: gcloud auth list
+        name: gclud auth list
+      - name: Configure docker to use the gcloud cli
+        run: gcloud auth configure-docker --quiet
+      - run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
       -
         name: Docker meta
         id: meta
@@ -28,6 +39,7 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             kmrpnk/practice
+            us-central1-docker.pkg.dev/blinddine/practice
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
@@ -56,7 +68,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: kmrpnk/practice:github-action
+          tags: '${{ steps.meta.outputs.tags }}'
           labels: ${{ steps.meta.outputs.labels }}
       -
         name: debug1
