@@ -12,6 +12,9 @@ on:
     branches:
       - "main"
 
+env:
+    SERVICE_ACCOUNT: 'github-action@blinddine.iam.gserviceaccount.com'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -27,7 +30,7 @@ jobs:
       - name: set up google gcloud
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
-            service_account_key: 'github-action@blinddine.iam.gserviceaccount.com'
+            service_account_key: ${{env.SERVICE_ACCOUNT}}
             export_default_credentials: true
       - run: gcloud auth list
         name: gclud auth list
@@ -39,7 +42,7 @@ jobs:
         uses: google-github-actions/auth@v1
         id: 'auth'
         with:
-            ervice_account: 'github-action@blinddine.iam.gserviceaccount.com'
+            ervice_account: ${{env.SERVICE_ACCOUNT}}
             workload_identity_provider: projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider
       -
         name: Docker meta
