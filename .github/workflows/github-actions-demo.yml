@@ -59,5 +59,11 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       -
-        name: debug
-        run: echo ${{ github.event_name != 'pull_request' }},${{ steps.meta.outputs.tags }},${{ steps.meta.outputs.labels }}
+        name: debug1
+        run: echo '${{ github.event_name != 'pull_request' }}'
+      -
+        name: debug2
+        run: echo '${{ steps.meta.outputs.tags }}'
+      -
+        name: debug3
+        run: echo '${{ steps.meta.outputs.labels }}'
