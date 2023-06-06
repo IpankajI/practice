@@ -13,8 +13,6 @@ on:
 jobs:
     setup:
         runs-on: ubuntu-latest
-        outputs:
-            env_name: ${{ steps.set-env_name.outputs.env_name }}
         steps:
         -   name: Checkout
             uses: actions/checkout@v3
@@ -24,5 +22,5 @@ jobs:
             run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
         -   name: Set target env name var
             id: set-env_name
-            run: echo ${{steps.commit-hash.COMMIT_HASH}}
+            run: echo ${{steps.commit-hash.outputs.COMMIT_HASH}}
     
