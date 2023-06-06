@@ -17,16 +17,31 @@ env:
     WIP: 'projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider'
 
 jobs:
-  docker:
-    runs-on: ubuntu-latest
-    environment: dev
-    permissions:
-        contents: 'read'
-        id-token: 'write'
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v3
-      -
-        name: debug1
-        run: echo ${{ vars.ENVIRONMENT_STAGE }}
+    setup:
+        runs-on: ubuntu-latest
+        outputs:
+            env_name: ${{ steps.set-env_name.outputs.env_name }}
+        steps:
+          - name: Set target env name var
+            id: set-env_name
+            run: |
+              echo "Running on branch ${{ github.ref }}"
+              if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+                echo "env_name=prod" > "$GITHUB_OUTPUT"
+              elif [ "${{ github.ref }}" = "refs/heads/develop" ]; then
+                echo "env_name=stg" > "$GITHUB_OUTPUT"
+              else
+                 echo "env_name=dev" > "$GITHUB_OUTPUT"
+              fi   
+    debugger:
+        runs-on: ubuntu-latest
+        environment: dev
+        needs: [setup]
+        permissions:
+            contents: 'read'
+            id-token: 'write'
+        steps:
+        -   name: Checkout
+            uses: actions/checkout@v3
+        -   name: debug1
+            run: echo ${{ needs.setup.env_name }}
