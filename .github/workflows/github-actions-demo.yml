@@ -12,10 +12,6 @@ on:
     branches:
       - "main"
 
-env:
-    SERVICE_ACCOUNT: 'github-action@blinddine.iam.gserviceaccount.com'
-    WIP: 'projects/455334694532/locations/global/workloadIdentityPools/github-wif-pool/providers/github-action-provider'
-
 jobs:
     setup:
         runs-on: ubuntu-latest
