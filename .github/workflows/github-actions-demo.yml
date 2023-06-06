@@ -13,8 +13,6 @@ on:
 jobs:
     setup:
         runs-on: ubuntu-latest
-        outputs:
-            env_name: ${{ steps.set-env_name.outputs.env_name }}
         steps:
         -   name: Checkout
             uses: actions/checkout@v3
