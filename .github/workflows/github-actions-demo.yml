@@ -24,6 +24,7 @@ jobs:
         steps:
         -   name: Checkout
             uses: actions/checkout@v3
+        -   run: "echo deployment for $API_ENV"
         -   name: Set target env name var
             id: set-env_name
             run: |
