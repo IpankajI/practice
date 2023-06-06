@@ -1,8 +1,6 @@
 name: ci
 
 on:
-  schedule:
-    - cron: "0 10 * * *"
   push:
     branches:
       - "**"
@@ -23,26 +21,5 @@ jobs:
         -   run: "echo deployment for $API_ENV"
         -   name: Set target env name var
             id: set-env_name
-            run: |
-              echo "Running on branch ${{ github.ref }}"
-              if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-                echo "env_name=prod" > "$GITHUB_OUTPUT"
-              elif [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-                echo "env_name=stg" > "$GITHUB_OUTPUT"
-              else
-                 echo "env_name=dev" > "$GITHUB_OUTPUT"
-              fi   
-    debugger:
-        runs-on: ubuntu-latest
-        environment: dev
-        needs: [setup]
-        permissions:
-            contents: 'read'
-            id-token: 'write'
-        steps:
-        -   name: Checkout
-            uses: actions/checkout@v3
-        -   name: debug1
-            run: echo ${{ needs.setup.outputs.env_name }}
-        -   name: debug2
-            run: echo ${{ github.ref }}
+            run: echo $COMMIT_HASH && echo $HASH
+    
