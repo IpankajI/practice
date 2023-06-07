@@ -1,27 +1,33 @@
-name: ci
-
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "**"
-    tags:
-      - "v*.*.*"
-  pull_request:
-    branches:
-      - "main"
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 
 jobs:
-    setup:
-        runs-on: ubuntu-latest
-        steps:
-        -   name: Checkout
-            uses: actions/checkout@v3
-        -   run: "echo deployment for $API_ENV"
-        -   name: set commit hash
-            id: commit-hash
-            run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
-        -   name: Set target env name var
-            id: set-env_name
-            run: echo ${{steps.commit-hash.outputs.COMMIT_HASH}}
-    
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $ENVIRONMENT"
+        env:
+          LEVEL: ${{ inputs.logLevel }}
+          TAGS: ${{ inputs.tags }}
+          ENVIRONMENT: ${{ inputs.environment }}
